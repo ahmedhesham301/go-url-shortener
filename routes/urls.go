@@ -31,7 +31,7 @@ func GetUrl(context *gin.Context) {
 	hash := context.Param("hash")
 	url, err := models.GetUrlByHash(hash)
 	if err != nil {
-		context.JSON(http.StatusBadRequest, gin.H{"message": "could not get url " + err.Error()})
+		context.JSON(http.StatusNotFound, gin.H{"message": "could not get url " + err.Error()})
 		return
 	}
 
