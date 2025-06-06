@@ -1,8 +1,8 @@
 package main
 
 import (
-	"urlshortner/db"
-	"urlshortner/routes"
+	"urlshortener/db"
+	"urlshortener/routes"
 
 	"github.com/gin-gonic/gin"
 )

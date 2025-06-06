@@ -4,7 +4,7 @@ import (
 	"math/rand"
 	"net/http"
 	"strconv"
-	"urlshortner/models"
+	"urlshortener/models"
 
 	"github.com/gin-gonic/gin"
 )

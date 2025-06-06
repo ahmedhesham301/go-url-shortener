@@ -1,7 +1,7 @@
 package models
 
 import (
-	"urlshortner/db"
+	"urlshortener/db"
 )
 
 type Url struct {
