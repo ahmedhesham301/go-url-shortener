@@ -34,6 +34,6 @@ func GetUrl(context *gin.Context) {
 		context.JSON(http.StatusNotFound, gin.H{"message": "could not get url " + err.Error()})
 		return
 	}
-
-	context.JSON(http.StatusOK, url)
+	context.Redirect(http.StatusFound, url.URL)
+		//context.JSON(http.StatusOK, url)
 }
