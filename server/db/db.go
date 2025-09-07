@@ -24,7 +24,7 @@ func InitDB() {
 func createTable() {
 	createUrlsTable := `
 	CREATE TABLE IF NOT EXISTS urls (
-	  urlHash INTEGER PRIMARY KEY AUTOINCREMENT,
+	  id INTEGER PRIMARY KEY AUTOINCREMENT,
 	  url TEXT NOT NULL
 	)
 	`
