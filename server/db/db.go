@@ -1,36 +1,31 @@
 package db
 
 import (
-	"database/sql"
+	"context"
 
-	_ "github.com/mattn/go-sqlite3"
+	"github.com/jackc/pgx/v5/pgxpool"
 )
 
-var DB *sql.DB
-
-func InitDB() {
-	var err error
-	DB, err = sql.Open("sqlite3", "urls.db")
-	if err != nil {
-		panic("couldn't connect to database")
-	}
-
-	DB.SetMaxOpenConns(10)
-	DB.SetMaxIdleConns(5)
-
-	createTable()
-}
-
-func createTable() {
-	createUrlsTable := `
+var createUrlsTable = `
 	CREATE TABLE IF NOT EXISTS urls (
-	  urlHash INTEGER PRIMARY KEY AUTOINCREMENT,
-	  url TEXT NOT NULL
+	  id SERIAL PRIMARY KEY,
+	  url VARCHAR NOT NULL
 	)
 	`
 
-	_,err := DB.Exec(createUrlsTable)
+func InitDB() {
+	pool, err := pgxpool.New(context.Background(), "postgres://ahmed:1234@localhost:5432/postgres")
 	if err != nil {
-		panic("could not create table "+ err.Error())
+		panic("couldn't connect to database")
+	}
+	defer conn.Close(context.Background())
+	// DB.SetMaxOpenConns(10)
+	// DB.SetMaxIdleConns(5)
+
+	// Create table
+
+	_, err = conn.Exec(context.Background(), createUrlsTable)
+	if err != nil {
+		panic("could not create table " + err.Error())
 	}
 }
