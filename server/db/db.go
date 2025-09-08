@@ -15,7 +15,7 @@ var createUrlsTable = `
 var Pool *pgxpool.Pool
 
 func InitDB() {
-	conn, err := pgxpool.ParseConfig("postgres://postgres:1234@localhost:5432/postgres")
+	conn, err := pgxpool.ParseConfig("postgres://postgres:1234@db:5432/postgres")
 	if err != nil {
 		panic("could not parse conection string: " + err.Error())
 	}
