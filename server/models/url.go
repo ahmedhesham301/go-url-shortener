@@ -6,16 +6,17 @@ import (
 )
 
 type Url struct {
-	Id  string `json:"id"`
+	Id  int    `json:"id"`
 	URL string `json:"url"`
 }
 
-func (u Url) Save() error {
+func (u *Url) Save() error {
 	query := `
 	INSERT INTO urls(url)
 	VALUES ($1)
+	RETURNING id
 	`
-	_, err := db.Pool.Exec(context.Background(), query, u.URL)
+	err := db.Pool.QueryRow(context.Background(), query, u.URL).Scan(&u.Id)
 	return err
 }
 
