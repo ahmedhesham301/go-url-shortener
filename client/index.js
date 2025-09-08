@@ -2,7 +2,7 @@ async function shortenUrl() {
     let url = document.getElementById("urlTextBox").value;
 
     try {
-        const response = await fetch('http://0.0.0.0:8089/create', {
+        const response = await fetch('http://db:8089/create', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'

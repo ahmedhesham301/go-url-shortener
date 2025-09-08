@@ -12,6 +12,7 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+  
   backend:
     build:
       context: .
@@ -21,4 +22,11 @@ services:
     depends_on:
       db:
         condition: service_healthy
+  
+  frontend:
+    image: nginx:alpine
+    ports:
+      - 80:80
+    volumes:
+    - ./client:/usr/share/nginx/html/:ro
       
