@@ -9,6 +9,7 @@ import (
 
 func main() {
 	db.InitDB()
+	defer db.Pool.Close()
 
 	server := gin.Default()
 	routes.RegisterRoutes(server)

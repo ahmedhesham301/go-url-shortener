@@ -1,9 +1,7 @@
 package routes
 
 import (
-	"math/rand"
 	"net/http"
-	"strconv"
 	"urlshortener/models"
 
 	"github.com/gin-gonic/gin"
@@ -17,8 +15,6 @@ func NewUrl(context *gin.Context) {
 		return
 	}
 
-	url.UrlHash = strconv.Itoa(rand.Int())
-
 	err = url.Save()
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{"message": "could not save url " + err.Error()})
@@ -28,12 +24,12 @@ func NewUrl(context *gin.Context) {
 }
 
 func GetUrl(context *gin.Context) {
-	hash := context.Param("hash")
-	url, err := models.GetUrlByHash(hash)
+	id := context.Param("id")
+	url, err := models.GetUrlById(id)
 	if err != nil {
 		context.JSON(http.StatusNotFound, gin.H{"message": "could not get url " + err.Error()})
 		return
 	}
 	context.Redirect(http.StatusFound, url.URL)
-		//context.JSON(http.StatusOK, url)
+	//context.JSON(http.StatusOK, url)
 }
