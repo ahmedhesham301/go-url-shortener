@@ -6,8 +6,8 @@ import (
 )
 
 type Url struct {
-	Id string `json:"id"`
-	URL     string `json:"url"`
+	Id  string `json:"id"`
+	URL string `json:"url"`
 }
 
 func (u Url) Save() error {
@@ -20,7 +20,7 @@ func (u Url) Save() error {
 }
 
 func GetUrlById(id string) (*Url, error) {
-	query := "SELECT * FROM urls WHERE urlHash = ?"
+	query := "SELECT * FROM urls WHERE id = ($1)"
 	row := db.Pool.QueryRow(context.Background(), query, id)
 
 	var url Url

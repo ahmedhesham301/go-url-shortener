@@ -15,19 +15,16 @@ var createUrlsTable = `
 var Pool *pgxpool.Pool
 
 func InitDB() {
-	conn, err := pgxpool.ParseConfig("postgres://postgres:1234@localhost:5432/postgres") 
+	conn, err := pgxpool.ParseConfig("postgres://postgres:1234@localhost:5432/postgres")
 	if err != nil {
 		panic("could not parse conection string: " + err.Error())
 	}
 	conn.ConnConfig.TLSConfig = nil
 
-
-	Pool, err = pgxpool.NewWithConfig(context.Background(),conn)
+	Pool, err = pgxpool.NewWithConfig(context.Background(), conn)
 	if err != nil {
 		panic("couldn't con	nect to database")
 	}
-	
-	
 
 	_, err = Pool.Exec(context.Background(), createUrlsTable)
 	if err != nil {

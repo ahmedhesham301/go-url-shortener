@@ -1,10 +1,10 @@
 package main
 
 import (
-	"urlshortener/db"
-	"urlshortener/routes"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"urlshortener/db"
+	"urlshortener/routes"
 )
 
 func main() {
