@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"urlshortener/models"
+	"urlshortener/monitor"
 
 	"github.com/gin-gonic/gin"
 )
@@ -22,7 +23,7 @@ func NewUrl(context *gin.Context) {
 		return
 	}
 	shortUrl := fmt.Sprintf("http://%s/%d", context.Request.Host, url.Id)
-
+	monitor.UrlsCount.Inc()
 	context.JSON(http.StatusCreated, gin.H{"message": "url created", "url": shortUrl})
 }
 

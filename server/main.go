@@ -1,10 +1,12 @@
 package main
 
 import (
+	"urlshortener/db"
+	"urlshortener/middleware"
+	"urlshortener/routes"
+
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"urlshortener/db"
-	"urlshortener/routes"
 )
 
 func main() {
@@ -12,8 +14,9 @@ func main() {
 	defer db.Pool.Close()
 
 	server := gin.Default()
-	routes.RegisterRoutes(server)
 	server.Use(cors.Default())
+	server.Use(middleware.RequestLatency)
+	routes.RegisterRoutes(server)
 
 	server.Run(":8089")
 }
