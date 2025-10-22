@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:13.22-alpine3.22
+    image: postgres:18
     # container_name: db
     environment:
       - POSTGRES_PASSWORD=1234
@@ -22,6 +22,8 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    environment:
+      - DATABASE_HOST=db
   
   frontend:
     image: nginx:alpine
@@ -29,4 +31,3 @@ services:
       - 80:80
     volumes:
     - ./client:/usr/share/nginx/html/:ro
-      

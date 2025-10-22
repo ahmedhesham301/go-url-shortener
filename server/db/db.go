@@ -2,6 +2,7 @@ package db
 
 import (
 	"context"
+	"os"
 
 	"github.com/jackc/pgx/v5/pgxpool"
 )
@@ -15,7 +16,8 @@ var createUrlsTable = `
 var Pool *pgxpool.Pool
 
 func InitDB() {
-	conn, err := pgxpool.ParseConfig("postgres://postgres:1234@db:5432/postgres")
+	database_host := os.Getenv("DATABASE_HOST")
+	conn, err := pgxpool.ParseConfig("postgres://postgres:1234@" + database_host + ":5432/postgres")
 	if err != nil {
 		panic("could not parse conection string: " + err.Error())
 	}
