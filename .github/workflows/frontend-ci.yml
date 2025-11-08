@@ -4,6 +4,7 @@ on:
   push:
     paths: 
       - 'client/**'
+      - 'devops/docker/frontend.Dockerfile'
 jobs:
 
   build:
