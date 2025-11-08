@@ -25,4 +25,4 @@ jobs:
       with:
         file: './devops/docker/backend.Dockerfile'
         push: true
-        tags: ahmedhesham301/go-url-shortener:latest
+        tags: ahmedhesham301/go-url-shortener-backend:latest
