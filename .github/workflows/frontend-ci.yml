@@ -3,7 +3,7 @@ name: frontend CI
 on:
   push:
     paths: 
-      - 'client/**'
+      - 'frontend/**'
       - 'devops/docker/frontend.Dockerfile'
 jobs:
 
