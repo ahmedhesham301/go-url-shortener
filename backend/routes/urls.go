@@ -1,7 +1,6 @@
 package routes
 
 import (
-	"fmt"
 	"net/http"
 	"urlshortener/models"
 	"urlshortener/monitor"
@@ -22,9 +21,9 @@ func NewUrl(context *gin.Context) {
 		context.JSON(http.StatusInternalServerError, gin.H{"message": "could not save url " + err.Error()})
 		return
 	}
-	shortUrl := fmt.Sprintf("http://%s/%d", context.Request.Host, url.Id)
+	// shortUrl := fmt.Sprintf("http://%s/%d", context.Request.Host, url.Id)
 	monitor.UrlsCount.Inc()
-	context.JSON(http.StatusCreated, gin.H{"message": "url created", "url": shortUrl})
+	context.JSON(http.StatusCreated, gin.H{"message": "url created", "id": url.Id, "long_url": url.URL})
 }
 
 func GetUrl(context *gin.Context) {

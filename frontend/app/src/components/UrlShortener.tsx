@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 
 interface ApiResponse {
+  id: number;
+  long_url: string;
   message: string;
-  url: string;
 }
 
 const UrlShortener: React.FC = () => {
@@ -27,8 +28,8 @@ const UrlShortener: React.FC = () => {
       }
 
       const data: ApiResponse = await response.json();
-      setOriginalUrl(url);
-      setShortenedUrl(data.url);
+      setOriginalUrl(data.long_url);
+      setShortenedUrl(`${window.location.origin}/${data.id}`);
       setError('');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
