@@ -14,7 +14,7 @@ const UrlShortener: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:8080/create', {
+      const response = await fetch('http://localhost/api/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
