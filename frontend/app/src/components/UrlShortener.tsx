@@ -8,7 +8,6 @@ interface ApiResponse {
 
 const UrlShortener: React.FC = () => {
   const [url, setUrl] = useState('');
-  const [originalUrl, setOriginalUrl] = useState('');
   const [shortenedUrl, setShortenedUrl] = useState('');
   const [error, setError] = useState<string>('');
 
@@ -28,13 +27,11 @@ const UrlShortener: React.FC = () => {
       }
 
       const data: ApiResponse = await response.json();
-      setOriginalUrl(data.long_url);
       setShortenedUrl(`${globalThis.location.origin}/${data.id}`);
       setError('');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
       setShortenedUrl('');
-      setOriginalUrl('');
     }
   };
 
