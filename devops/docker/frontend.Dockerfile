@@ -2,17 +2,19 @@ FROM node:24-alpine AS build
 
 WORKDIR /app
 
-COPY frontend/package*.json ./
+COPY frontend/app/package*.json ./
 
 RUN npm install
 
-COPY frontend/ .
+COPY frontend/app/ .
 
 RUN npm run build
 
 FROM nginx:latest
 
 WORKDIR /usr/share/nginx/html
+
+COPY frontend/nginx.conf /etc/nginx/nginx.conf
 
 COPY --from=build /app/build/ .
 
