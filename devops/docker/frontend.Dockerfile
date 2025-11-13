@@ -10,7 +10,7 @@ COPY frontend/app/ .
 
 RUN npm run build
 
-FROM nginx:latest
+FROM nginx:3
 
 WORKDIR /usr/share/nginx/html
 
