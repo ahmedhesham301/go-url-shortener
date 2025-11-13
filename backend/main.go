@@ -18,5 +18,5 @@ func main() {
 	server.Use(middleware.RequestLatency)
 	routes.RegisterRoutes(server)
 
-	server.Run(":8089")
+	server.Run(":8080")
 }

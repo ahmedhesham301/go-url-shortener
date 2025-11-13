@@ -18,7 +18,7 @@ services:
       context: .
       dockerfile: devops/docker/backend.Dockerfile
     ports:
-      - 8080:8089
+      - 8080:8080
     depends_on:
       db:
         condition: service_healthy
@@ -31,8 +31,7 @@ services:
       dockerfile: devops/docker/frontend.Dockerfile
     ports:
       - 80:80
-    # volumes:
-    # - ./frontend:/usr/share/nginx/html/:ro
+    restart: always
   pg_admin:
     image: dpage/pgadmin4:latest
     container_name: pg_admin
