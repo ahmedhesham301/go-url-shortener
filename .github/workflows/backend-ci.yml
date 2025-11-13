@@ -5,6 +5,7 @@ on:
     paths: 
       - 'backend/**'
       - 'devops/docker/backend.Dockerfile'
+      - '.github/workflows/backend-ci.yml'
 jobs:
 
   build:

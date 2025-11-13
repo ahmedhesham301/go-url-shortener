@@ -5,6 +5,7 @@ on:
     paths: 
       - 'frontend/**'
       - 'devops/docker/frontend.Dockerfile'
+      - '.github/workflows/frontend-ci.yml'
 jobs:
 
   build:
