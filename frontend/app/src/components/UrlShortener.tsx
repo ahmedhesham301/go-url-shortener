@@ -29,7 +29,7 @@ const UrlShortener: React.FC = () => {
 
       const data: ApiResponse = await response.json();
       setOriginalUrl(data.long_url);
-      setShortenedUrl(`${window.location.origin}/${data.id}`);
+      setShortenedUrl(`${globalThis.location.origin}/${data.id}`);
       setError('');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
