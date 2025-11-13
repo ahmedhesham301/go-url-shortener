@@ -9,7 +9,7 @@ COPY backend/ ./
 
 RUN go build -v -o . ./...
 
-FROM alpine:latest
+FROM alpine:3
 
 WORKDIR /app
 
