@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-url-shortener-backend
+  labels:
+    app.kubernetes.io/name: go-url-shortener
+    app.kubernetes.io/component: backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: go-url-shortener
+      app.kubernetes.io/component: backend
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: go-url-shortener
+        app.kubernetes.io/component: backend
+    spec:
+      containers:
+      - name: go-url-shortener-backend
+        image: ahmedhesham301/go-url-shortener-backend
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DATABASE_HOST
+          value: 192.168.1.40

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-url-shortener-backend
+  labels:
+    app.kubernetes.io/name: go-url-shortener
+    app.kubernetes.io/component: backend
+spec:
+  selector:
+    app.kubernetes.io/name: go-url-shortener
+    app.kubernetes.io/component: backend
+  type: ClusterIP
+  ports: 
+  - port: 8080
+    targetPort: 8080

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-url-shortener-frontend
+  labels:
+    app.kubernetes.io/name: go-url-shortener
+    app.kubernetes.io/component: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: go-url-shortener
+      app.kubernetes.io/component: frontend
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: go-url-shortener
+        app.kubernetes.io/component: frontend
+    spec:
+      containers:
+      - name: go-url-shortener-frontend
+        image: ahmedhesham301/go-url-shortener-frontend
+        ports:
+        - containerPort: 80
